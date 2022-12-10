@@ -40,7 +40,7 @@ function App() {
             <MineCard gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
             <UpgradeCard setUpgradeA={setUpgradeA} img={upgrade} text={`Upgrade`} />
           </div>
-          <PopUp setShop={setShop} trigger={shop} />
+          <PopUp goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShop} trigger={shop} />
           <UpgradePopUp setUpgradeA={setUpgradeA} trigger={upgradeA} />
         </div>
       </div>
