@@ -1,10 +1,20 @@
 import React from 'react'
 
-const MineCard = ({img, text, gold, setGold}) => {
+const MineCard = ({img, text, gold, setGold, goldRate, nugget_prob}) => {
+
+
+
+  const handleGold = () => {
+    var nugget = Math.floor(Math.random() * nugget_prob) + 1; // starts at 1, 7 => 1/6 because exclusive max => 17%
+    const nugget_rate = parseInt(((0.35 * goldRate) + goldRate) + gold);
+    nugget === 1 ? setGold(nugget_rate) : setGold(gold + goldRate); 
+    //console.log(nugget);
+  }
+
   return (
     <>
         
-          <div onClick={() => setGold(gold + 10)} className="w-[260px] h-[350px] bg-gray-500 relative rounded-md border-[3px] border-cyan-300 hover:cursor-pointer">
+          <div onClick={() => handleGold()} className="w-[260px] h-[350px] bg-gray-500 relative rounded-md border-[3px] border-cyan-300 hover:cursor-pointer">
             <img src={img} alt="" />
             <div className="w-full h-[80px] bg-blue-700 absolute bottom-0 rounded-sm border-t-[3px] border-cyan-300">
                 <div className="flex items-center justify-center w-full h-full">

@@ -13,16 +13,31 @@ function App() {
 
   const [gold, setGold] = useState(0);
   const [goldRate, setGoldRate] = useState(10);
-  const [lvl, setLvl] = useState(0);
-  const [prev, setPrev] = useState(10);
+  const [lvl, setLvl] = useState(1);
   const [shop, setShop] = useState(false);
   const [upgradeA, setUpgradeA] = useState(false);
+  const [nuggetProb, setNuggetProb] = useState(10); // lower this to increase prob of nugget
+  //const [durability, setDurability] = useState(10);
+
+  const levels = [100, 1000, 10000, 100000, 1000000, "MAX"];
+  const [lvlPtr, setLvlPtr] = useState(0);
 
   useEffect(() => {
-    if(gold === (10 * prev)){
-      setLvl(lvl + 1);
-      alert(`Level Up! - ${lvl + 1}`)
-      setPrev(gold);
+    if(lvlPtr === levels.length - 1){
+        return;
+    }
+    else{
+      if(gold >= levels[lvlPtr]){
+        setLvl(lvl + 1);
+        alert(`Level Up! - ${lvl + 1}`)
+        if (lvl == 5){
+          setLvl("MAX");
+        }
+        else{
+          setLvl(lvl + 1);
+        }
+        setLvlPtr(lvlPtr + 1);
+      }
     }
   }, [gold])
 
@@ -37,10 +52,10 @@ function App() {
         <div className="flex flex-col items-center justify-center h-screen">
           <div className="flex justify-evenly w-full">
             <ShopCard setShop={setShop} img={shop} text={`Shop`} />
-            <MineCard gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
+            <MineCard nugget_prob={nuggetProb} goldRate={goldRate} gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
             <UpgradeCard setUpgradeA={setUpgradeA} img={upgrade} text={`Upgrade`} />
           </div>
-          <PopUp goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShop} trigger={shop} />
+          <PopUp nuggetProb={nuggetProb} setNuggetProb={setNuggetProb} setGold={setGold} gold={gold} goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShop} trigger={shop} />
           <UpgradePopUp setUpgradeA={setUpgradeA} trigger={upgradeA} />
         </div>
       </div>
