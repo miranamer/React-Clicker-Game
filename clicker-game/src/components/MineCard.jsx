@@ -1,14 +1,13 @@
 import React from 'react'
 
-const MineCard = ({img, text, gold, setGold, goldRate, nugget_prob}) => {
+const MineCard = ({img, text, gold, setGold, goldRate, nugget_prob, nugget_multiplier}) => {
 
 
 
   const handleGold = () => {
     var nugget = Math.floor(Math.random() * nugget_prob) + 1; // starts at 1, 7 => 1/6 because exclusive max => 17%
-    const nugget_rate = parseInt(((0.35 * goldRate) + goldRate) + gold);
-    nugget === 1 ? setGold(nugget_rate) : setGold(gold + goldRate); 
-    //console.log(nugget);
+    const nugget_rate = parseInt(((nugget_multiplier * goldRate) + goldRate) + gold);
+    nugget === 1 ? setGold(nugget_rate) : setGold(gold + goldRate);
   }
 
   return (

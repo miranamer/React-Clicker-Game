@@ -11,12 +11,15 @@ import UpgradePopUp from './components/UpgradePopUp';
 
 function App() {
 
+  //TODO: Add name to HOF page, view leaderboard page.
+
   const [gold, setGold] = useState(0);
   const [goldRate, setGoldRate] = useState(10);
   const [lvl, setLvl] = useState(1);
   const [shop, setShop] = useState(false);
   const [upgradeA, setUpgradeA] = useState(false);
   const [nuggetProb, setNuggetProb] = useState(10); // lower this to increase prob of nugget
+  const [nuggetMultiplier, setNuggetMultiplier] = useState(0.35);
   //const [durability, setDurability] = useState(10);
 
   const levels = [100, 1000, 10000, 100000, 1000000, "MAX"];
@@ -52,10 +55,10 @@ function App() {
         <div className="flex flex-col items-center justify-center h-screen">
           <div className="flex justify-evenly w-full">
             <ShopCard setShop={setShop} img={shop} text={`Shop`} />
-            <MineCard nugget_prob={nuggetProb} goldRate={goldRate} gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
+            <MineCard nugget_multiplier={nuggetMultiplier} nugget_prob={nuggetProb} goldRate={goldRate} gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
             <UpgradeCard setUpgradeA={setUpgradeA} img={upgrade} text={`Upgrade`} />
           </div>
-          <PopUp nuggetProb={nuggetProb} setNuggetProb={setNuggetProb} setGold={setGold} gold={gold} goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShop} trigger={shop} />
+          <PopUp nuggetMultiplier={nuggetMultiplier} setNuggetMultiplier={setNuggetMultiplier} nuggetProb={nuggetProb} setNuggetProb={setNuggetProb} setGold={setGold} gold={gold} goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShop} trigger={shop} />
           <UpgradePopUp setUpgradeA={setUpgradeA} trigger={upgradeA} />
         </div>
       </div>
