@@ -3,6 +3,7 @@ import Background from './components/Background'
 import Home from './pages/Home'
 import HOF from './pages/HOF'
 import {Route, Routes} from 'react-router-dom'
+import Leaderboard from './pages/Leaderboard'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
   const [upgradeA, setUpgradeA] = useState(false);
   const [nuggetProb, setNuggetProb] = useState(10); // lower this to increase prob of nugget
   const [nuggetMultiplier, setNuggetMultiplier] = useState(0.35);
+  const [token, setToken] = useState(1);
   //const [durability, setDurability] = useState(10);
 
   const levels = [100, 1000, 10000, 100000, 1000000, "MAX"];
@@ -45,7 +47,8 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home gold={gold} setGold={setGold} nuggetProb={nuggetProb} setNuggetProb={setNuggetProb} nuggetMultiplier={nuggetMultiplier} setNuggetMultiplier={setNuggetMultiplier} lvl={lvl} setLvl={setLvl} upgradeA={upgradeA} setUpgradeA={setUpgradeA} setShopA={setShopA} shopA={shopA} goldRate={goldRate} setGoldRate={setGoldRate} />} />
-        <Route path='/add_your_name' element={<HOF />} />
+        <Route path='/add_your_name' element={<HOF setGold={setGold} token={token} setToken={setToken} gold={gold} />} />
+        <Route path='/leaderboard' element={<Leaderboard />} />
       </Routes>
     </>
   );

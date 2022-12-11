@@ -22,7 +22,7 @@ const Home = ({gold, setGold, nuggetProb, setNuggetProb, nuggetMultiplier, setNu
           <div className="flex justify-evenly w-full">
             <ShopCard setShop={setShopA} img={shop} text={`Shop`} />
             <MineCard nugget_multiplier={nuggetMultiplier} nugget_prob={nuggetProb} goldRate={goldRate} gold={gold} setGold={setGold} img={pick} text={`${goldRate} Gold per second`} />
-            <UpgradeCard setUpgradeA={setUpgradeA} img={upgrade} text={`Upgrade`} />
+            <UpgradeCard setUpgradeA={setUpgradeA} img={upgrade} text={`Leaderboard`} />
           </div>
           <PopUp nuggetMultiplier={nuggetMultiplier} setNuggetMultiplier={setNuggetMultiplier} nuggetProb={nuggetProb} setNuggetProb={setNuggetProb} setGold={setGold} gold={gold} goldRate={goldRate} setGoldRate={setGoldRate} setShop={setShopA} trigger={shopA} />
           <UpgradePopUp setUpgradeA={setUpgradeA} trigger={upgradeA} />

@@ -10,13 +10,23 @@ const db = mysql.createPool({
     host:"localhost",
     user:"root",
     password:"password",
-    database:"clickerdb",
-    port:3001
+    database:"clickerdb"
+    //port:3001
 })
 
-app.get('/', (req, res) => {
-    const q = "SELECT * FROM clickertable"
+app.get('/names', (req, res) => {
+    const q = "SELECT * FROM clickertable;"
     db.query(q, (err, data) => {
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post('/names', (req, res) => {
+    const q = "INSERT INTO clickertable (`name`) VALUES (?)"
+    const values = [req.body.name]
+
+    db.query(q, [values], (err, data) => {
         if(err) return res.json(err)
         return res.json(data)
     })

@@ -1,7 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PopUp = (props) => {
+
+    const navigate = useNavigate()
 
     const [items, setItems] = useState([1, 2, 3, 4]);
 
@@ -76,6 +79,16 @@ const PopUp = (props) => {
 
     }
 
+    const handleFour = (e) => {
+        if(props.gold >= 1000000){
+            e.preventDefault()
+            navigate('/add_your_name')
+        }
+        else{
+            alert('Must Have 1,000,000 Gold!')
+        }
+    }
+
 
 
 
@@ -107,7 +120,7 @@ const PopUp = (props) => {
                 {items.includes(4) ? <div className="drop-shadow-lg relative w-full h-[75px] bg-red-300 mt-10 flex items-center">
                     <button className='text-red-600  border-red-600 px-7 py-2 rounded-md absolute left-4'>Ultra-Rare</button>
                     <h1 className='absolute text-2xl left-[25%] text-red-600 font-bold'>Add Your Name To The Hall Of Fame</h1>
-                    <button onClick={() => setItems(items.filter(item => item !== 4))} className='text-red-600  border-red-600 px-4 py-2 rounded-md border-2 absolute right-4'>1,000,000</button>
+                    <button onClick={(e) => handleFour(e)} className='text-red-600  border-red-600 px-4 py-2 rounded-md border-2 absolute right-4'>1,000,000</button>
                 </div> : null} </>}
                 
                 {props.children}
