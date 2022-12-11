@@ -7,19 +7,21 @@ app.use(cors())
 app.use(express.json())
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'clickerdb'
+    host:"localhost",
+    user:"root",
+    password:"password",
+    database:"clickerdb",
+    port:3001
 })
 
-app.get("/", (req, res) => {
-    const sqlQuery = "INSERT INTO clickernames (Name) VALUES ('miran');"
-    db.query(sqlQuery, (err, result) => {
-        res.send("hello there!");
+app.get('/', (req, res) => {
+    const q = "SELECT * FROM clickertable"
+    db.query(q, (err, data) => {
+        if(err) return res.json(err)
+        return res.json(data)
     })
 })
 
-app.listen(3001, () => {
+app.listen(3002, () => {
     console.log("Running...")
 })
